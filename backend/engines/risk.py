@@ -37,6 +37,7 @@ def assess_risk(portfolio: dict) -> IntelligenceObject:
 
     return IntelligenceObject(
         engine="risk",
+        entity_id=str(portfolio.get("entity_id", "unknown")),
         result={"score": score, "components": components},
         classification=classification,
         drivers=drivers,
