@@ -7,6 +7,7 @@ def forecast(entity: dict) -> IntelligenceObject:
     expected=base-stress
     return IntelligenceObject(
         engine="forecast",
+        entity_id=str(entity.get("entity_id", "unknown")),
         result={"expected_return":round(expected,4),"volatility":volatility},
         classification="POSITIVE" if expected > 0 else "NEGATIVE",
         drivers=["Base return","Stress adjustment"],
