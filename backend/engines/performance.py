@@ -6,6 +6,7 @@ def assess_performance(entity: dict) -> IntelligenceObject:
     excess=ret-benchmark
     return IntelligenceObject(
         engine="performance",
+        entity_id=str(entity.get("entity_id", "unknown")),
         result={"return_1y":ret,"benchmark_return":benchmark,"excess_return":round(excess,4)},
         classification="OUTPERFORMING" if excess>0 else "UNDERPERFORMING" if excess<0 else "IN_LINE",
         drivers=["Excess return versus benchmark"],
