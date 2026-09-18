@@ -1,0 +1,11 @@
+{
+  "portfolio_id": "DEMO-001",
+  "market": "private",
+  "concentration_risk": 76,
+  "liquidity_risk": 82,
+  "valuation_risk": 71,
+  "capital_risk": 61,
+  "manager_risk": 58,
+  "macro_risk": 63,
+  "underlying_asset_risk": 67
+}
