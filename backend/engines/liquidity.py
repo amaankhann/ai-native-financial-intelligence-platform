@@ -13,6 +13,7 @@ def assess_liquidity(portfolio: dict) -> IntelligenceObject:
     score = clamp(score)
     return IntelligenceObject(
         engine="liquidity",
+        entity_id=str(portfolio.get("entity_id", "unknown")),
         result={"score": score, "components": values},
         classification=classify(score),
         drivers=[max(values, key=values.get)],
