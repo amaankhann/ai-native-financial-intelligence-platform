@@ -6,6 +6,7 @@ def value_asset(entity: dict) -> IntelligenceObject:
     gap=0 if market == 0 else (intrinsic-market)/market
     return IntelligenceObject(
         engine="valuation",
+        entity_id=str(entity.get("entity_id", "unknown")),
         result={"intrinsic_value":intrinsic,"market_value":market,"valuation_gap":round(gap,4)},
         classification="DISCOUNT" if gap > .10 else "PREMIUM" if gap < -.10 else "ALIGNED",
         drivers=["Intrinsic vs market value"],
