@@ -5,6 +5,7 @@ def detect_anomaly(entity: dict) -> IntelligenceObject:
     classification = "ANOMALOUS" if z >= 3 else "WATCH" if z >= 2 else "NORMAL"
     return IntelligenceObject(
         engine="anomaly",
+        entity_id=str(entity.get("entity_id", "unknown")),
         result={"anomaly_score":z,"thresholds":{"watch":2,"anomalous":3}},
         classification=classification,
         drivers=["Observed deviation from expected behavior"] if z >= 2 else [],
