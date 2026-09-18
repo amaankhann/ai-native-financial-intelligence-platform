@@ -7,6 +7,7 @@ def assess_esg(entity: dict) -> IntelligenceObject:
     score=round(.4*environmental+.3*social+.3*governance)
     return IntelligenceObject(
         engine="esg",
+        entity_id=str(entity.get("entity_id", "unknown")),
         result={"score":score,"environmental":environmental,"social":social,"governance":governance},
         classification="HIGH" if score>=70 else "MEDIUM" if score>=45 else "LOW",
         drivers=["environmental","social","governance"],
