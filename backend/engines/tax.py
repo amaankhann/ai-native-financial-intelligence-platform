@@ -6,6 +6,7 @@ def assess_tax(entity: dict) -> IntelligenceObject:
     liability=max(0,gain*rate)
     return IntelligenceObject(
         engine="tax",
+        entity_id=str(entity.get("entity_id", "unknown")),
         result={"estimated_tax_liability":round(liability,2),"realized_gain":gain,"effective_rate":rate},
         classification="MATERIAL" if liability > float(entity.get("tax_materiality_threshold",10000)) else "NORMAL",
         drivers=["Realized gain","Effective tax rate"],
