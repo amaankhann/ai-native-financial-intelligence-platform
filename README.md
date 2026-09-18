@@ -1,44 +1,29 @@
 # AI-Native Financial Intelligence Architecture
 
-> An architecture-first reference implementation for transforming heterogeneous financial data into explainable intelligence across public and private markets.
+> **Architecture-first repository for an AI-native financial intelligence system across public and private markets.**
 
-**Live UI reference:** https://wealthtechmodel.netlify.app  
-**Repository:** https://github.com/amaankhann/ai-native-financial-intelligence-platform
+This repository exists **solely to present the architecture**: the master intelligence architecture, specialist engine architectures, information flows, design logic, and the conceptual path from financial data to decision intelligence.
 
-## What this project is
+It is **not currently a software implementation repository**.
 
-This repository presents the **architecture, contracts, orchestration patterns and reference logic** for an AI-native financial intelligence layer.
+## Current purpose
 
-The objective is to move from:
+The current phase documents the architecture before the data, model and production engineering phases are added.
 
-**Data → Analytics → Dashboards**
+### Architecture being presented
 
-toward:
+- Public Market Intelligence Architecture
+- Private Market Intelligence Architecture
+- Canonical Financial Intelligence Layer
+- Nine specialist intelligence engines
+- Intelligence Object / common output contract
+- Trigger-based orchestration
+- Scenario and stress framework
+- Explainability, confidence, uncertainty and provenance
+- Entity and exposure concepts
+- Future data, model and deployment layers
 
-**Data → Intelligence → Reasoning → Simulation → Decision Intelligence**
-
-The project is intentionally **architecture-first**. No proprietary, live or vendor-connected financial dataset is included in the repository. The current engine calculations use illustrative inputs so that the architecture can be executed and demonstrated without claiming production data coverage.
-
-## Current state
-
-| Capability | Status |
-|---|---|
-| Master architecture | Designed |
-| Canonical intelligence object | Implemented |
-| Nine specialist engines | Reference implementations |
-| Engine routing | Implemented |
-| Trigger-based orchestration | Implemented |
-| Scenario/stress framework | Reference implementation |
-| Data-quality gate | Reference implementation |
-| Entity-resolution layer | Reference implementation |
-| Feature registry | Reference implementation |
-| Real financial datasets | Not connected |
-| Vendor data integrations | Not connected |
-| Production ML models | Not implemented |
-| Production deployment | Not implemented |
-| Investment recommendations | Not provided |
-
-## Architecture
+## Master architecture
 
 ```
                          FINANCIAL DATA UNIVERSE
@@ -49,7 +34,7 @@ The project is intentionally **architecture-first**. No proprietary, live or ven
                    │                             │
                    └──────────────┬──────────────┘
                                   ↓
-                       DATA INGESTION LAYER
+                       DATA INGESTION FABRIC
                                   ↓
                     NORMALIZATION + QUALITY GATE
                                   ↓
@@ -57,25 +42,22 @@ The project is intentionally **architecture-first**. No proprietary, live or ven
                                   ↓
                     CANONICAL FINANCIAL MODEL
                                   ↓
-                    EXPOSURE / OWNERSHIP GRAPH
+                    OWNERSHIP / EXPOSURE GRAPH
                                   ↓
                        FEATURE INTELLIGENCE
                                   ↓
               ┌───────────────────┴───────────────────┐
               │                                       │
-        CORE INTELLIGENCE                      SPECIALIST INTELLIGENCE
+       CORE INTELLIGENCE                      SPECIALIST INTELLIGENCE
               │                                       │
-        ┌─────┼────────┐                     ┌────────┼────────┐
-        │     │        │                     │        │        │
-       Risk Valuation Forecast             Credit  Liquidity Anomaly
-        │     │        │                     │        │        │
-   Performance                              Tax      ESG
+       Risk / Forecast /                       Credit / Liquidity /
+       Valuation / Performance                 Anomaly / Tax / ESG
               │                                       │
               └───────────────────┬───────────────────┘
                                   ↓
                          INTELLIGENCE OBJECT
                                   ↓
-                      TRIGGER / ROUTING LAYER
+                      INTELLIGENCE ORCHESTRATOR
                                   ↓
                        SCENARIO / STRESS FABRIC
                                   ↓
@@ -90,162 +72,145 @@ The project is intentionally **architecture-first**. No proprietary, live or ven
 
 ## Nine intelligence engines
 
-1. **Risk Intelligence** — multi-dimensional risk aggregation and explanation.
-2. **Forecast Intelligence** — forward-looking return/volatility reference logic.
-3. **Valuation Intelligence** — intrinsic-versus-observed valuation analysis.
-4. **Performance Intelligence** — return and benchmark-relative analysis.
-5. **Credit Intelligence** — leverage, coverage, cash-flow and covenant risk.
-6. **Liquidity Intelligence** — liquidity buffer, unfunded, market-depth and lock-up pressure.
-7. **Anomaly Intelligence** — deviation and abnormal-behavior detection.
-8. **Tax Intelligence** — illustrative tax-liability calculations.
-9. **ESG Intelligence** — environmental, social and governance aggregation.
+| Engine | Architectural role |
+|---|---|
+| **Risk Intelligence** | Multi-dimensional risk interpretation |
+| **Forecast Intelligence** | Forward-looking expectation and uncertainty layer |
+| **Valuation Intelligence** | Value estimation, gap and valuation uncertainty |
+| **Performance Intelligence** | Return, attribution and benchmark-relative intelligence |
+| **Credit Intelligence** | Creditworthiness, leverage and debt-service intelligence |
+| **Liquidity Intelligence** | Liquidity capacity, funding and exit-pressure intelligence |
+| **Anomaly Intelligence** | Abnormal-pattern and signal detection |
+| **Tax Intelligence** | Tax exposure and tax-impact intelligence |
+| **ESG Intelligence** | Environmental, social and governance intelligence |
 
-These are **architectural engine prototypes**, not validated institutional models.
+Each engine is documented as an architectural component. The repository does not claim that these engines are currently trained, calibrated or connected to production financial data.
 
-## Canonical Intelligence Object
+## Intelligence Object
 
-Every engine emits a common semantic object:
+The engines are designed to converge on a common intelligence representation:
 
 **Result → Drivers → Evidence → Confidence → Uncertainty → Provenance → Impact → Timestamp → Model Version**
 
-This allows an orchestration layer to combine specialist outputs instead of treating each engine as a standalone dashboard.
+The purpose is to make specialist intelligence composable across assets, portfolios, scenarios and downstream decision workflows.
 
-## Orchestration model
+## Architecture philosophy
 
-The architecture is event/condition driven:
+The system is designed around a progression:
 
 ```
-State / Event
-     ↓
-Trigger Detection
-     ↓
-Relevant Specialist Engines
-     ↓
-Intelligence Objects
-     ↓
-Cross-Engine Reconciliation
-     ↓
-Scenario / Decision Context
+Data
+  ↓
+Context
+  ↓
+Features
+  ↓
+Specialist Intelligence
+  ↓
+Cross-Engine Reasoning
+  ↓
+Scenario Simulation
+  ↓
+Decision Intelligence
 ```
 
-For example, a liquidity-stress condition can activate liquidity and risk analysis, while other engines can be conditionally invoked depending on the resulting signals.
+The specialist engines are therefore not intended to be isolated dashboards. They form a coordinated intelligence layer.
 
-## Public vs private markets
+## Public and private markets
 
-The architecture does not force public and private assets into identical data models.
+The architecture recognizes that public and private assets have different information structures.
 
-**Public-market layer:** prices, volume, fundamentals, benchmarks, factors, market exposures and observable market signals.
+**Public markets** can expose observable market information such as price, volume, fundamentals, benchmarks and factor exposures.
 
-**Private-market layer:** commitments, capital calls, distributions, periodic valuations, ownership, GP/company relationships, transactions, operating metrics and appraisal evidence.
+**Private markets** require different structures such as ownership, commitments, capital calls, distributions, periodic valuations, company operating information, GP relationships, transaction evidence and look-through exposure.
 
-The market-specific data and feature layers converge into a common intelligence contract above them.
-
-## Data position
-
-There is currently **no live financial dataset connected to this project**.
-
-The repository therefore does not claim:
-- live market coverage;
-- vendor data licensing;
-- production portfolio analytics;
-- predictive accuracy;
-- institutional risk-model validation;
-- investment performance;
-- real-time decisioning.
-
-The included inputs are only **illustrative demonstrator inputs** used to exercise the architecture.
+These market-specific foundations ultimately feed a common intelligence layer.
 
 ## Repository structure
 
 ```
-backend/
-  api/                  # API interfaces
-  engines/              # nine reference intelligence engines
-  features/             # feature definitions and transformations
-  intelligence/          # canonical contracts, scoring, validation, quality
-  models/               # canonical financial entities
-  orchestration/        # routing, triggers, scenarios, reconciliation
+docs/
+├── MASTER_ARCHITECTURE.md
+├── INTELLIGENCE_ENGINE_FRAMEWORK.md
+├── ENGINE_SPECIFICATIONS.md
+├── INTELLIGENCE_OBJECT.md
+├── ENGINE_LIFECYCLE.md
+├── PUBLIC_PRIVATE_MARKETS.md
+├── DATA_MODEL.md
+├── DATA_QUALITY.md
+├── DATA_QUALITY_GATE.md
+├── ENTITY_RESOLUTION.md
+├── FEATURE_REGISTRY.md
+├── ORCHESTRATION.md
+├── SCENARIO_SIMULATION.md
+├── SCENARIO_CATALOG.md
+├── EXPLAINABILITY.md
+├── RISK_INTELLIGENCE_ENGINE.md
+└── PRODUCTION_BLUEPRINT.md
 
-data/sample/             # illustrative demonstrator inputs only
-
-docs/                    # architecture and design specifications
-frontend/                # lightweight architecture demonstrator
-tests/                   # reference tests
-.github/workflows/       # CI configuration
-Dockerfile
-requirements.txt
+docs/images/
+└── Architecture and engine diagrams
 ```
 
-## Running the demonstrator
+## Phase status
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python backend/app.py
-```
+### Phase 1 — Architecture **(current)**
 
-API surface:
+The repository currently focuses on defining and presenting the architecture.
 
-```
-GET  /health
-GET  /api/architecture
-GET  /api/engines
-POST /api/intelligence/run
-POST /api/intelligence/auto
-POST /api/risk/assess
-POST /api/scenarios/liquidity-stress
-POST /api/scenarios/run
-```
+### Phase 2 — Data foundation **(future)**
 
-The API is intended to demonstrate **architecture mechanics**, not real-world financial decisioning.
+- Data-source and vendor adapters
+- Canonical schemas
+- Entity resolution
+- Ownership and exposure graph
+- Data quality and lineage
+- Public/private market datasets
 
-## Design principles
+### Phase 3 — Intelligence models **(future)**
 
-- Architecture before vendor dependency.
-- One canonical intelligence contract across specialist engines.
-- Explicit evidence, confidence and uncertainty.
-- Public/private market-specific data foundations.
-- Trigger-based engine invocation.
-- Scenario-aware reasoning.
-- Explainability and provenance as first-class outputs.
-- Deterministic reference logic separated from future production models.
-- Human/agent consumption above the intelligence layer.
+- Statistical models
+- ML models
+- Forecasting models
+- Optimization models
+- Calibration
+- Backtesting
+- Model governance and monitoring
 
-## Roadmap
+### Phase 4 — Production intelligence platform **(future)**
 
-### Phase 1 — Architecture
-- [x] Master architecture
-- [x] Canonical intelligence object
-- [x] Nine engine specifications
-- [x] Orchestration and routing
-- [x] Scenario framework
-- [x] Explainability framework
+- Production APIs
+- Feature store
+- Model registry
+- Agent/tool orchestration
+- Security and access controls
+- Deployment
+- Monitoring
+- Human-in-the-loop decision workflows
 
-### Phase 2 — Data foundation
-- [ ] Vendor/data-source adapters
-- [ ] Production data schemas
-- [ ] Entity-resolution graph
-- [ ] Ownership/look-through graph
-- [ ] Data lineage
-- [ ] Production quality/reconciliation framework
+## Visual artifacts
 
-### Phase 3 — Intelligence models
-- [ ] Historical datasets
-- [ ] Statistical/ML model implementations
-- [ ] Backtesting
-- [ ] Calibration
-- [ ] Model registry
-- [ ] Drift monitoring
-- [ ] Independent model validation
+The intended visual layer of this repository is:
 
-### Phase 4 — Decision layer
-- [ ] Portfolio-level intelligence aggregation
-- [ ] Advanced scenario library
-- [ ] Agent/tool orchestration
-- [ ] Human-in-the-loop controls
-- [ ] Production deployment and security
+1. **Master Architecture**
+2. **Public Market Architecture**
+3. **Private Market Architecture**
+4. **Risk Intelligence Engine**
+5. **Forecast Intelligence Engine**
+6. **Valuation Intelligence Engine**
+7. **Performance Intelligence Engine**
+8. **Credit Intelligence Engine**
+9. **Liquidity Intelligence Engine**
+10. **Anomaly Intelligence Engine**
+11. **Tax Intelligence Engine**
+12. **ESG Intelligence Engine**
 
-## Important disclaimer
+The corresponding architecture images will be added to `docs/images/` as the visual source material is uploaded.
 
-This is a **research, architecture and software-prototyping project**. It does not contain live/proprietary financial data, does not provide investment recommendations, and its reference calculations are not validated institutional financial models.
+## Important scope statement
+
+**There is currently no live financial dataset, proprietary financial data, vendor integration, production ML model, production API or validated investment model in this repository.**
+
+Those components belong to later implementation phases.
+
+The purpose of the repository at this stage is to communicate the **system architecture, intelligence design and engineering blueprint** clearly and accurately.
